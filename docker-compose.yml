@@ -7,8 +7,7 @@ services:
     build:
       context: ./API
       dockerfile: Dockerfile
-    networks:
-      - all
+    network_mode: "host"
     expose:
       - "7778"
     ports:
@@ -17,8 +16,7 @@ services:
   ui:
     image: ucekmez/ex-ui
     container_name: "ui"
-    networks:
-      - all
+    network_mode: "host"
     build:
       context: ./UI
       dockerfile: Dockerfile
@@ -28,7 +26,3 @@ services:
       - "7779:7779"
     depends_on:
       - api
-
-
-networks:
-  all:
