@@ -3,13 +3,10 @@
 docker study materials for in-house training at B3Lab
 
 ## how to run
-docker-compose build
-
+docker-compose build  
 docker-compose up
 
 # what's inside
-localhost:7777 : mongo database
-
-localhost:7778 : python API (URIs: /, /save, /mylist)
-
+localhost:7777 : mongo database  
+localhost:7778 : python API (URIs: /, /save, /mylist)  
 localhost:7779 : react frontend
