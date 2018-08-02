@@ -8,6 +8,9 @@ services:
           - ./database:/data/db
     expose:
       - "7777"
+    command: 'mongod --bind_ip_all'
+    networks:
+      - all
     ports:
       - "7777:27017"
 
@@ -17,18 +20,22 @@ services:
     build:
       context: ./API
       dockerfile: Dockerfile
+    networks:
+      - all
     expose:
       - "7778"
     ports:
       - "7778:7778"
-    links:
-      - database
     depends_on:
       - database
+    deploy:
+      replicas: 2
 
   ui:
     image: ucekmez/ex-ui
     container_name: "ui"
+    networks:
+      - all
     build:
       context: ./UI
       dockerfile: Dockerfile
@@ -36,7 +43,11 @@ services:
       - "7779"
     ports:
       - "7779:7779"
-    links:
-      - api
     depends_on:
       - api
+    deploy:
+      replicas: 2
+
+
+networks:
+  all:
