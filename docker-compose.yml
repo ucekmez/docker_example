@@ -1,36 +1,24 @@
 version: '3'
 
 services:
-  database:
-    image: mongo
-    container_name: "database"
-    volumes:
-          - ./database:/data/db
-    expose:
-      - "7777"
-    command: 'mongod --bind_ip_all'
-    network_mode: "host"
-    ports:
-      - "7777:27017"
-
   api:
     image: ucekmez/ex-api
     container_name: "api"
     build:
       context: ./API
       dockerfile: Dockerfile
-    network_mode: "host"
+    networks:
+      - all
     expose:
       - "7778"
     ports:
       - "7778:7778"
-    depends_on:
-      - database
 
   ui:
     image: ucekmez/ex-ui
     container_name: "ui"
-    network_mode: "host"
+    networks:
+      - all
     build:
       context: ./UI
       dockerfile: Dockerfile
