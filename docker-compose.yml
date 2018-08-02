@@ -9,8 +9,7 @@ services:
     expose:
       - "7777"
     command: 'mongod --bind_ip_all'
-    networks:
-      - all
+    network_mode: "host"
     ports:
       - "7777:27017"
 
@@ -20,22 +19,18 @@ services:
     build:
       context: ./API
       dockerfile: Dockerfile
-    networks:
-      - all
+    network_mode: "host"
     expose:
       - "7778"
     ports:
       - "7778:7778"
     depends_on:
       - database
-    deploy:
-      replicas: 2
 
   ui:
     image: ucekmez/ex-ui
     container_name: "ui"
-    networks:
-      - all
+    network_mode: "host"
     build:
       context: ./UI
       dockerfile: Dockerfile
@@ -45,8 +40,6 @@ services:
       - "7779:7779"
     depends_on:
       - api
-    deploy:
-      replicas: 2
 
 
 networks:
