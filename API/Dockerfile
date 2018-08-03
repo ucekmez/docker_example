@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER ugur cekmez <ugur.cekmez@tubiotak.gov.tr>
+MAINTAINER ugur cekmez <ugur.cekmez@tubitak.gov.tr>
 
 # Install system-wide packages
 RUN apt-get update && apt-get install -y --no-install-recommends \

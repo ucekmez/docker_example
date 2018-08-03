@@ -3,7 +3,7 @@
 
 from mongoengine import *
 
-connect('sampledatabase', host='172.17.1.57', port=7777)
+connect('sampledatabase', host='10.1.34.63', port=7771)
 
 class Record(Document):
     title        = StringField(max_length=128, required=True)
